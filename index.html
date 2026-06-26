@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Tic Tac Toe</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <span class="x-accent">TIC</span>
+                <span class="divider">·</span>
+                <span class="o-accent">TAC</span>
+                <span class="divider">·</span>
+                <span class="x-accent">TOE</span>
+            </div>
+            <div class="header-controls">
+                <button id="sound-toggle" class="control-btn" title="Toggle Sound" aria-label="Toggle Sound">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Configuration Settings Card -->
+        <section class="config-card glass-panel">
+            <div class="mode-selector">
+                <button id="mode-pvp" class="mode-btn active" data-mode="pvp">
+                    <i class="fas fa-users"></i> Local PvP
+                </button>
+                <button id="mode-ai" class="mode-btn" data-mode="ai">
+                    <i class="fas fa-robot"></i> VS Computer
+                </button>
+            </div>
+
+            <div id="ai-difficulty-container" class="difficulty-selector hidden">
+                <span class="label">AI Level:</span>
+                <div class="difficulty-options">
+                    <button class="diff-btn" data-difficulty="easy">Easy</button>
+                    <button class="diff-btn active" data-difficulty="medium">Medium</button>
+                    <button class="diff-btn" data-difficulty="unbeatable">Unbeatable</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scoreboard -->
+        <section class="scoreboard">
+            <div class="score-card glass-panel x-theme" id="score-x-card">
+                <div class="score-label"><i class="fas fa-times"></i> Player X</div>
+                <div class="score-value" id="score-x">0</div>
+            </div>
+            <div class="score-card glass-panel tie-theme" id="score-tie-card">
+                <div class="score-label"><i class="fas fa-handshake"></i> Ties</div>
+                <div class="score-value" id="score-ties">0</div>
+            </div>
+            <div class="score-card glass-panel o-theme" id="score-o-card">
+                <div class="score-label" id="player-o-label"><i class="far fa-circle"></i> Player O</div>
+                <div class="score-value" id="score-o">0</div>
+            </div>
+        </section>
+
+        <!-- Current Player Turn Indicator -->
+        <div class="turn-indicator" id="turn-indicator">
+            Turn: <span class="player-turn x-accent" id="turn-text"><i class="fas fa-times"></i> X's Turn</span>
+        </div>
+
+        <!-- The Game Board Grid -->
+        <main class="board-wrapper">
+            <div class="board" id="board">
+                <button class="cell" data-index="0" aria-label="Cell 1"></button>
+                <button class="cell" data-index="1" aria-label="Cell 2"></button>
+                <button class="cell" data-index="2" aria-label="Cell 3"></button>
+                <button class="cell" data-index="3" aria-label="Cell 4"></button>
+                <button class="cell" data-index="4" aria-label="Cell 5"></button>
+                <button class="cell" data-index="5" aria-label="Cell 6"></button>
+                <button class="cell" data-index="6" aria-label="Cell 7"></button>
+                <button class="cell" data-index="7" aria-label="Cell 8"></button>
+                <button class="cell" data-index="8" aria-label="Cell 9"></button>
+                <div class="winning-line" id="winning-line"></div>
+            </div>
+        </main>
+
+        <!-- Controls Footer -->
+        <footer class="game-controls">
+            <button id="reset-board" class="action-btn secondary">
+                <i class="fas fa-redo"></i> Reset Round
+            </button>
+            <button id="reset-scores" class="action-btn outline">
+                <i class="fas fa-trash-alt"></i> Reset Scores
+            </button>
+        </footer>
+    </div>
+
+    <!-- Overlay Screen for Game Over -->
+    <div class="overlay hidden" id="game-over-overlay">
+        <div class="overlay-content glass-panel animated pop-in">
+            <h2 id="overlay-title" class="overlay-title">Winner!</h2>
+            <div class="winner-display" id="winner-display">
+                <!-- Will be dynamically populated (e.g. X symbol, O symbol, or Handshake) -->
+            </div>
+            <p id="overlay-subtitle" class="overlay-subtitle">Player X dominated the match</p>
+            <button id="overlay-play-again" class="action-btn primary">
+                <i class="fas fa-play"></i> Play Again
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
